@@ -1,0 +1,21 @@
+
+<h1>Add a new product to inventory</h1>
+<div class="form">
+<%= form_tag "/new_product", method: :post do %>
+	<div>
+		Product name: <input type="text" name="name">
+	</div>
+	<div>
+		Product price: <input type="text" name="price">
+	</div>
+	<div>
+		Product image: <input type="text" name="image">
+	</div>
+	<div>
+		Product description: <input type="text" name="description">
+	</div>
+	<div>
+	<input type="submit" value="Submit message">
+	</div>
+<%end%>
+</div>
