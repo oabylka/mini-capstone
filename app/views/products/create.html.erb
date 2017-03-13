@@ -1,13 +1,17 @@
-<h1>New Product</h1>
+<h1>Product Created</h1>
 <div class="form">
 <div>
 <%= @product.name %>
-<%= @product.price %>
+</div>
+<div>
+$<%= @product.price %>
 </div>
 <div>
 <%= @product.image %>
 </div>
 <div>
+<br>
+Description:
+<br>
 <%= @product.description %>
-</div>
 </div>

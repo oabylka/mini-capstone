@@ -1,0 +1,25 @@
+<h1>Product</h1>
+<div class="form">
+	<div>
+	<%= @product.name %>
+	</div>
+	<div>
+	<img src="<%= @product.image %>">
+	</div>
+	<div>
+	$<%= @product.price %>
+	</div>
+	<div>
+	<%= @product.image %>
+	</div>
+	<div>
+	<br>
+	Description:
+	<br>
+	<%= @product.description %>
+	</div>
+
+	<%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
+
+	<%= link_to "Edit", "/products/#{@product.id}/edit"%>
+</div>

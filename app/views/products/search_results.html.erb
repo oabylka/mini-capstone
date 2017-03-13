@@ -1,0 +1,12 @@
+<h1>Search Results</h1>
+ <% @products.each do |x| %>
+      <div class="col-md-3">
+          <div class="item">
+           <a href="/products/<%= x.id %>"><%= x.name %></a><br>
+           <img src="assets/<%= x.image %>">
+           <%= x.description %><br>
+          <%= link_to "Delete", "/products/#{x.id}", method: :delete %>
+          <%= link_to "Edit", "/products/#{x.id}/edit"%>
+          </div>
+      </div>
+  <%end%>
