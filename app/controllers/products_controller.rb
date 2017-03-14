@@ -19,6 +19,8 @@ class ProductsController < ApplicationController
 		input_desc = params[:description]
 
 		@product = Product.create(name:input_name , price:input_price , image:input_image , description:input_desc)
+		
+		flash[:success] = "Product Created!"
 		redirect_to "/products/#{@product.id}"
 	end
 
@@ -37,12 +39,15 @@ class ProductsController < ApplicationController
 		@product = product.update(name:input_name , price:input_price , image:input_image , description:input_desc)
 		#@product.save
 
+		flash[:info] = "Product updated successfully!"
 		redirect_to "/products/#{product.id}"
 	end
 
 	def destroy
 		@product = Product.find(params[:id])
 		@product.destroy
+
+		flash[:danger] = "Product Deleted"
 		redirect_to '/products'
 	end
 
