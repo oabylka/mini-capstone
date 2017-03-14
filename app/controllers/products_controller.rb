@@ -46,8 +46,10 @@ class ProductsController < ApplicationController
 	end
 
 	def search_results
-		@products = Product.where("name LIKE '%#{params[:keywords]}%'")
+		@keyword = "%#{params[:keywords]}%"
+		@products = Product.where("name LIKE ? OR description LIKE ?", @keyword, @keyword)
 	end
+
 end
 
 
