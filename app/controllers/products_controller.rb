@@ -19,6 +19,12 @@ class ProductsController < ApplicationController
 		input_desc = params[:description]
 
 		@product = Product.create(name:input_name , price:input_price , image:input_image , description:input_desc)
+		redirect_to "/products/#{@product.id}"
+	end
+
+	def edit
+		product_id = params[:id]
+		@product = Product.find_by(id: product_id)
 	end
 
 	def update
@@ -32,11 +38,6 @@ class ProductsController < ApplicationController
 		#@product.save
 
 		redirect_to "/products/#{product.id}"
-	end
-
-	def edit
-		product_id = params[:id]
-		@product = Product.find_by(id: product_id)
 	end
 
 	def destroy
