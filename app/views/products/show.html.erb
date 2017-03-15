@@ -5,16 +5,29 @@
 		<%= @product.name %>
 		</div>
 		<div>
+			<%= @product.sale_message(@product.price) %>
+		</div
+		<div>
 		<img src="<%= "/assets/#{@product.image}" %>">
 		</div>
-		<div>
-		$<%= @product.price %>
-		</div>
-		<div>
-		<br>
-		Description:
-		<br>
-		<%= @product.description %>
+		<div class="price">
+			<div>
+			$<%= @product.price %>
+			</div>
+			<div>
+			Tax: $<%= @product.tax(@product.price) %>
+			</div>
+			<% if @product.sale_message(@product.price) == "Discount item!" %>
+			 <div class="red_price">Total: $<%= @product.total(@product.price,(@product.tax(@product.price))) %></div>
+			<% else %>
+			 <div class="white_price">Total: $<%= @product.total(@product.price,(@product.tax(@product.price))) %></div>
+			<% end %>
+			<div>
+			<br>
+			Description:
+			<br>
+			<%= @product.description %>
+			</div>
 		</div>
 
 		<%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
