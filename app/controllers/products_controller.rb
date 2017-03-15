@@ -55,7 +55,6 @@ class ProductsController < ApplicationController
 		@keyword = "%#{params[:keywords]}%"
 		@products = Product.where("name LIKE ? OR description LIKE ?", @keyword, @keyword)
 	end
-
 end
 
 

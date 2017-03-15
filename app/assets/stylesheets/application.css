@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+	font-family: 'Comic Sans'; sans-serif;
+	background-image: url(dark_wall.png);
+}
+
+.container {
+	text-align: center;
+}
+
