@@ -20,4 +20,9 @@ class Product < ApplicationRecord
 		price+tax
 	end
 
+	def search_results
+		@keyword = "%#{params[:keywords]}%"
+		@products = Product.where("name LIKE ? OR description LIKE ?", @keyword, @keyword)
+	end
+
 end
