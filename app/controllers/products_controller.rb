@@ -1,6 +1,17 @@
 class ProductsController < ApplicationController
+
 	def index
-		@products = Product.all
+		sort = params[:sort]
+		sort_order = params[:sort_order]
+		discount_items = params[:discount_items]
+
+		if discount_items
+			@products = Product.where("price < ?", 2)
+		elsif sort && sort_order
+			@products = Product.all.order(sort => sort_order)
+		else
+			@products = Product.all
+		end
 	end
 
 	def new
@@ -8,8 +19,13 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		product_id = params[:id]
-		@product = Product.find_by(id: product_id)
+		if params[:id] == "random"
+			products = Product.all
+			@product = products.sample
+		else
+			product_id = params[:id]
+			@product = Product.find_by(id: product_id)
+		end
 	end
 
 	def create
@@ -53,10 +69,11 @@ class ProductsController < ApplicationController
 		redirect_to '/products'
 	end
 
-	# def search_results
-	# 	@keyword = "%#{params[:keywords]}%"
-	# 	@products = Product.where("name LIKE ? OR description LIKE ?", @keyword, @keyword)
-	# end
+	def search
+		@keyword = "%#{params[:keywords]}%"
+		@products = Product.where("name ILIKE ? OR description ILIKE ?", @keyword, @keyword)
+		render :index
+	end
 end
 
 

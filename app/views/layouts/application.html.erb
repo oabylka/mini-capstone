@@ -26,7 +26,7 @@
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav">
 			      </ul>
-			          <%= form_tag products_search_results_path, class:"navbar-form navbar-left" do %>
+			          <%= form_tag "/search", method: :post, class:"navbar-form navbar-left" do %>
 			          <div class="form-group">
 			  			<%= text_field_tag :keywords, placeholder="Search" %>
 			  			</div>
@@ -34,6 +34,7 @@
 						<% end %>
 			  
 			      <ul class="nav navbar-nav navbar-right">
+			      	<li><a href="/products?discount_items=discount_items">Discount Items</a></li>
 			        <li><a href="/products/new">New Product</a></li>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->

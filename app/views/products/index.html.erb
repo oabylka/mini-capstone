@@ -1,6 +1,9 @@
 
 <h1>Viewing all products</h1>
 <br>
+<a href="/products?sort=name&sort_order=asc">Sort by Name</a><br>
+<a href="/products?sort=price&sort_order=desc">Sort by Price Ascending</a>
+<a href="/products?sort=price">Sort by Price Descending</a><br>
 <% @products.each_slice(3) do |three| %>
   <div class="row">
     <% three.each do |x| %>
