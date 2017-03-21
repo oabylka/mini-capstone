@@ -11,7 +11,11 @@
           <div class="well">
             <div class="item">
              <a href="/products/<%= x.id %>"><%= x.name %></a><br>
-             <img src="assets/<%= x.image %>">
+
+              <% x.images.limit(1).each do |image| %>
+                <%=image_tag("#{image.name}")%>
+              <% end %>
+
               <div class="price">
               $<%= x.price%>
             </div>

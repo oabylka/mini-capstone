@@ -8,16 +8,15 @@
 		Product price: <input type="text" name="price" value="<%= @product.price %>">
 	</div>
 	<div class="check">
-		Product image: <input type="text" name="image" value="<%= @product.image %>">
-	</div>
-	<div class="check">
 		Number in stock: <input type="text" name="stock_number" value="<%= @product.stock_number %>">
 	</div>
 	<div class="check">
 		Product description: <input type="text" name="description" value="<%= @product.description %>">
 	</div>
 	<div class="check">
-	<input type="submit" value="Save Product">
+		Supplier: <input type="text" name="supplier_id" value="<%= @product.supplier_id %>">
 	</div>
+	<div class="check">
+	<input type="submit" value="Save Product">
 <%end%>
 </div>

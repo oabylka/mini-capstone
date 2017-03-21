@@ -1,0 +1,15 @@
+<h1>Shows Images added to x product<h1>
+
+<div class="show_product">
+	<div class="well">
+		<div>
+		<%= @image.name %>
+		</div>
+		<div>
+		<%= @image.product_id %>
+		</div>
+		
+		<%= link_to "Delete", "/suppliers/#{@supplier.id}", method: :delete %><br>
+		<%= link_to "Edit", "/suppliers/#{@supplier.id}/edit"%>
+	</div>
+</div>

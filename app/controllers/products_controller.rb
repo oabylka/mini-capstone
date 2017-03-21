@@ -34,8 +34,10 @@ class ProductsController < ApplicationController
 		input_image = params[:image]
 		input_desc = params[:description]
 		input_stock_num = params[:stock_number]
+		input_supplier = params[:supplier_id]
 
-		@product = Product.create(name:input_name , price:input_price , image:input_image , description:input_desc, stock_number:input_stock_num)
+		@product = Product.create(name:input_name , price:input_price , image:input_image , description:input_desc, 
+			stock_number:input_stock_num, supplier_id:input_supplier)
 		
 		flash[:success] = "Product Created!"
 		redirect_to "/products/#{@product.id}"
@@ -49,12 +51,13 @@ class ProductsController < ApplicationController
 	def update
 		input_name = params[:name]
 		input_price = params[:price]
-		input_image = params[:image]
 		input_desc = params[:description]
 		input_stock_num = params[:stock_number]
+		input_supplier = params[:supplier_id]
 
 		product = Product.find_by(id: params[:id])
-		@product = product.update(name:input_name , price:input_price , image:input_image , description:input_desc, stock_number:input_stock_num)
+		@product = product.update(name:input_name , price:input_price, description:input_desc, 
+			stock_number:input_stock_num,supplier_id:input_supplier)
 		#@product.save
 
 		flash[:info] = "Product updated successfully!"

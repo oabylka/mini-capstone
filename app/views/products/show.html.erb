@@ -2,15 +2,22 @@
 <div class="show_product">
 	<div class="well">
 		<div>
-		<%= @product.name %>
+		<b><%= @product.name %></b>
+		</div>
+		<div>
+		<b>Supplier: <%= @product.supplier.name%></b>
 		</div>
 		<div>
 			<%= @product.sale_message(@product.price) %>
-		</div
-		<div>
-		<img src="<%= "/assets/#{@product.image}" %>">
 		</div>
-		<div class="price">
+		<div>
+			<% @product.images.each do |image| %>
+			<div class="image">
+                <%= image_tag("#{image.name}") %>
+            </div>
+              <% end %>
+		</div>
+		<div class="white_price">
 			<div>
 			$<%= @product.price %>
 			</div>
@@ -32,6 +39,7 @@
 
 		<%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
 
-		<%= link_to "Edit", "/products/#{@product.id}/edit"%>
+		<%= link_to "Edit", "/products/#{@product.id}/edit"%><br>
+		<%= link_to "Add New Image", "/products/#{@product.id}/images/new" %>
 	</div>
 </div>

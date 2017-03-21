@@ -1,0 +1,18 @@
+<h1>Edit Supplier</h1>
+<div class="form">
+<%= form_tag "/suppliers/#{@supplier.id}", method: :patch do %>
+	<div class="check">
+		Supplier name: <input type="text" name="name" value="<%= @supplier.name %>">
+	</div>
+	<div class="check">
+		Supplier phone: <input type="text" name="phone" value="<%= @supplier.phone %>">
+	</div>
+	<div class="check">
+		Supplier email: <input type="text" name="email" value="<%= @supplier.email %>">
+	</div>
+
+	<div class="check">
+	<input type="submit" value="Save Supplier">
+	</div>
+<%end%>
+</div>

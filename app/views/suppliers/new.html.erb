@@ -1,0 +1,18 @@
+
+<h1>Add a new supplier</h1>
+<div class="form">
+<%= form_tag "/suppliers", method: :post do %>
+	<div class="check">
+		Supplier name: <input type="text" name="name">
+	</div>
+	<div class="check">
+		Supplier phone: <input type="text" name="phone">
+	</div>
+	<div class="check">
+		Supplier email: <input type="text" name="email">
+	</div>
+	<div class="check">
+	<input type="submit" value="Save Product">
+	</div>
+<%end%>
+</div>
