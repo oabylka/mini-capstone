@@ -1,5 +1,10 @@
 
 <h1>Viewing all products</h1>
+<div class="user">
+   <% if current_user %>
+      Welcome <%= current_user.name %>!
+    <% end %>
+</div>
 <br>
 <a href="/products?sort=name&sort_order=asc">Sort by Name</a><br>
 <a href="/products?sort=price&sort_order=desc">Sort by Price Ascending</a>
