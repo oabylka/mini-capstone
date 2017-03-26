@@ -17,10 +17,10 @@
             </div>
               <% end %>
 		</div>
-		<div class="white_price">
+		<div>
 			<div>
 			$<%= @product.price %>
-			</div>
+			<!-- </div>
 			<div>
 			Tax: $<%= @product.tax(@product.price) %>
 			</div>
@@ -29,11 +29,17 @@
 			<% else %>
 			 <div class="white_price">Total: $<%= @product.total(@product.price,(@product.tax(@product.price))) %></div>
 			<% end %>
-			<div>
+			<div> -->
 			<br>
 			Description:
 			<br>
 			<%= @product.description %>
+			</div>
+			<div>
+			<br>
+			Category: <% @product.categories.each do |category| %>
+						<%=category.name%>
+					<% end %>
 			</div>
 		</div>
 
@@ -42,4 +48,19 @@
 		<%= link_to "Edit", "/products/#{@product.id}/edit"%><br>
 		<%= link_to "Add New Image", "/products/#{@product.id}/images/new" %>
 	</div>
+</div>
+
+<div class="form">
+<h3>Add Product to cart</h3>
+<%= form_tag "/orders", method: :post do %>
+	<div class="check">
+		Quantity: <input type="integer" name="quantity">
+	</div>
+	<div class="check">
+		<input type="hidden" name="product_id" value="<%= @product.id %>">
+	</div>
+	<div class="check">
+	<input type="submit" value="Buy Now" class="btn btn-default">
+	</div>
+<%end%>
 </div>

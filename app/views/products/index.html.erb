@@ -5,10 +5,12 @@
       Welcome <%= current_user.name %>!
     <% end %>
 </div>
+
 <br>
 <a href="/products?sort=name&sort_order=asc">Sort by Name</a><br>
-<a href="/products?sort=price&sort_order=desc">Sort by Price Ascending</a>
+<a href="/products?sort=price&sort_order=desc">Sort by Price Ascending</a><br>
 <a href="/products?sort=price">Sort by Price Descending</a><br>
+<br>
 <% @products.each_slice(3) do |three| %>
   <div class="row">
     <% three.each do |x| %>
@@ -36,8 +38,8 @@
   </div>
 <% end %>
 
-<div class="container">
-<%= button_to "Add New Product", "/products/new", method: :get %>
+<div class="btn btn-default">
+<%= link_to "Add New Product", "/products/new", method: :get %>
 </div>
 
 

@@ -5,14 +5,23 @@ class ProductsController < ApplicationController
 		sort = params[:sort]
 		sort_order = params[:sort_order]
 		discount_items = params[:discount_items]
+		category_id = params[:category_id]
 
-		if discount_items
-			@products = Product.where("price < ?", 2)
-		elsif sort && sort_order
-			@products = Product.all.order(sort => sort_order)
+
+		if category_id
+			@category = Category.find_by(id: category_id)
+			@products = @category.products
 		else
 			@products = Product.all
 		end
+
+		# if discount_items
+		# 	@products = Product.where("price < ?", 2)
+		# elsif sort && sort_order
+		# 	@products = Product.all.order(sort => sort_order)
+		# else
+		# 	@products = Product.all
+		# end
 	end
 
 	def new
@@ -75,7 +84,7 @@ class ProductsController < ApplicationController
 
 	def search
 		@keyword = "%#{params[:keywords]}%"
-		@products = Product.where("name ILIKE ? OR description ILIKE ?", @keyword, @keyword)
+		@product = Product.where("name ILIKE ? OR description ILIKE ?", @keyword, @keyword)
 		render :index
 	end
 end

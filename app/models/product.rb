@@ -1,6 +1,10 @@
 class Product < ApplicationRecord
 	belongs_to :supplier
+	has_many :users
+	has_many :orders
 	has_many :images
+	has_many :categorized_products
+	has_many :categories, through: :categorized_products
 
 	def sale_message(price)
 		price = price

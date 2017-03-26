@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def categories
+  	@categories ||= Category.all
+  end
+  helper_method :categories
+
   def authenticate_user!
   		redirect_to "/login" unless current_user
   end

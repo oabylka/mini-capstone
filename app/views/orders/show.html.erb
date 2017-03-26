@@ -1,0 +1,14 @@
+<div class="white_price">
+<h2>Your Order Summary</h2>
+Order email: <%= @order.user.email%><br>
+ Your order ID: <%= @order.id %><br>
+ Product: <%= @order.product.name %><br>
+ Quantity: <%= @order.quantity %><br>
+	<%= image_tag(@order.product.images.first.name) %><br>
+
+<br />
+ Subtotal: <%= number_to_currency(@order.subtotal) %><br>
+ Tax Applied: <%= number_to_currency(@order.tax) %><br>
+ Total Price: <%= number_to_currency(@order.total) %><br>
+ Order confirmed at: <%= @order.created_at.strftime('%m/%d/%Y') %>
+</div>
