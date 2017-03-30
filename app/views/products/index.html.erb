@@ -4,6 +4,21 @@
    <% if current_user %>
       Welcome <%= current_user.name %>!
     <% end %>
+
+    <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Categories
+            <span class="caret text-align: right;"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <% categories.each do |category| %>
+                <li>
+              <a href="/products?category_id=<%=category.id%>"><%=category.name%></a>
+              <br>
+            </li>
+          <% end %>
+          </ul>
+    </div>
 </div>
 
 <br>

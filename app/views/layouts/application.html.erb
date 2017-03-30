@@ -51,7 +51,17 @@
 							  </ul>
 							</div>
 						</li>
-					
+
+						<!-- shoping cart redirect -->
+						<% if cart %>
+							<li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+								<%= shopping_cart_count %>
+							</a></li>
+						<% else %>
+							<li><a href="/products">Checkout</a></li>
+						<% end %>
+
+
 			      	<li><a href="/products?discount_items=discount_items">Discount Items</a></li>
 			        <li><a href="/products/new">New Product</a></li>
 			        <% if current_user %>

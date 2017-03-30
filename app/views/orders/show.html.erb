@@ -1,10 +1,15 @@
 <div class="white_price">
 <h2>Your Order Summary</h2>
 Order email: <%= @order.user.email%><br>
- Your order ID: <%= @order.id %><br>
- Product: <%= @order.product.name %><br>
- Quantity: <%= @order.quantity %><br>
-	<%= image_tag(@order.product.images.first.name) %><br>
+Your order ID: <%= @order.id %><br>
+
+<br />
+Products ordered: <% @order.carted_products.each do |x| %><br>
+					<h4><%=x.product.name%></h4><br>
+					<p><%=x.quantity%><p><br>
+				<% end %>
+
+
 
 <br />
  Subtotal: <%= number_to_currency(@order.subtotal) %><br>

@@ -52,7 +52,7 @@
 
 <div class="form">
 <h3>Add Product to cart</h3>
-<%= form_tag "/orders", method: :post do %>
+<%= form_tag "/carted_products", method: :post do %>
 	<div class="check">
 		Quantity: <input type="integer" name="quantity">
 	</div>
@@ -60,7 +60,7 @@
 		<input type="hidden" name="product_id" value="<%= @product.id %>">
 	</div>
 	<div class="check">
-	<input type="submit" value="Buy Now" class="btn btn-default">
+	<input type="submit" value="Add To Cart" class="btn btn-default">
 	</div>
 <%end%>
 </div>

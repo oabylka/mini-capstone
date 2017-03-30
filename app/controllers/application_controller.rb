@@ -11,6 +11,18 @@ class ApplicationController < ActionController::Base
   end
   helper_method :categories
 
+  def cart
+    @cart ||=CartedProduct.where(id: current_user.id, status:"carted")
+  end
+  helper_method :cart
+
+  def shopping_cart_count
+    if current_user
+      current_user.carted_products.where(status: "carted").length
+    end
+  end
+  helper_method :shopping_cart_count
+
   def authenticate_user!
   		redirect_to "/login" unless current_user
   end
