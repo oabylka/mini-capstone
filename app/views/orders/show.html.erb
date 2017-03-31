@@ -1,19 +1,19 @@
 <div class="white_price">
-<h2>Your Order Summary</h2>
+<h1>Your Order Summary</h1>
 Order email: <%= @order.user.email%><br>
 Your order ID: <%= @order.id %><br>
 
 <br />
-Products ordered: <% @order.carted_products.each do |x| %><br>
-					<h4><%=x.product.name%></h4><br>
+<h1> Products ordered:</h1> <% @order.carted_products.each do |x| %><br>
+					<h4><%=x.product.name%></h4>
 					<p><%=x.quantity%><p><br>
 				<% end %>
 
 
 
 <br />
- Subtotal: <%= number_to_currency(@order.subtotal) %><br>
- Tax Applied: <%= number_to_currency(@order.tax) %><br>
- Total Price: <%= number_to_currency(@order.total) %><br>
+ <h4>Subtotal: <%= number_to_currency(@order.subtotal) %></h4>
+ <p><h4>Tax Applied: <%= number_to_currency(@order.tax) %></h4></p>
+ <p><h2>Total Price: <%= number_to_currency(@order.total) %></h2></p>
  Order confirmed at: <%= @order.created_at.strftime('%m/%d/%Y') %>
 </div>

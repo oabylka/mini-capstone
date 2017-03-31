@@ -1,4 +1,17 @@
 <h1>Edit Product</h1>
+
+<% if @product.errors.any? %>
+		<div class="red_price">
+			<h3><%= pluralize(@product.errors.count, "error") %></h3>
+			<ul>
+			<% @product.errors.full_messages.each do |error| %>
+			<li><%= error %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	
 <div class="form">
 <%= form_tag "/products/#{@product.id}", method: :patch do %>
 	<div class="check">

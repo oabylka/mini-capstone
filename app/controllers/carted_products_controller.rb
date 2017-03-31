@@ -1,5 +1,8 @@
 class CartedProductsController < ApplicationController
+	before_action :authenticate_user!
+
 	def create
+
 		input_quantity = params[:quantity]
 		input_product_id = params[:product_id]
 		input_user_id = current_user.id
@@ -13,18 +16,24 @@ class CartedProductsController < ApplicationController
 			redirect_to "/products"
 			#redirect_to "/cart/#{@cart.id}"
 		else
-			flash[:danger] = "Couldn't Add Product to Cart!"
-			redirect_to "/cart/#{input_product_id}"
+			if @cart.errors.messages[:quantity].empty?
+				flash[:danger] = "Product couldn't be added to cart!"
+				#redirect_to "/cart/#{input_product_id}"
+			else
+				flash[:danger] = "Product couldn't be added to cart! Must enter quantity more than 0"
+			end
 		end
-
-
 	end
 
 	def index
-		#@carted_products = CartedProduct.find_by(id: params[:product_id])
 		@carted_products = CartedProduct.where(user_id: current_user.id, status:"carted")
 
-		#@carted_products = current_user.carted_products.where(status: "carted")
+		# if @carted_product.save
+		# 	flash[:success] = "Product added to cart"
+		# 	@carted_products = CartedProduct.where(user_id: current_user.id, status:"carted")
+		# else
+		# 	flash[:danger] = "Product couldn't be added to cart! Please add a valid quantity"
+		# end
 	end
 
 

@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
   helper_method :categories
 
   def cart
-    @cart ||=CartedProduct.where(id: current_user.id, status:"carted")
+    if current_user
+     @cart ||=CartedProduct.where(id: current_user.id, status:"carted")
+    end
   end
   helper_method :cart
 
@@ -24,6 +26,16 @@ class ApplicationController < ActionController::Base
   helper_method :shopping_cart_count
 
   def authenticate_user!
-  		redirect_to "/login" unless current_user
+      if !current_user
+        flash[:danger] = "You must be an admin to do that!"
+        redirect_to "/login"
+      end
+  end
+
+  def authenticate_admin!
+    if !current_user && current_user.admin
+        flash[:danger] = "You must be an admin to do that!"
+        redirect_to "/"
+    end
   end
 end

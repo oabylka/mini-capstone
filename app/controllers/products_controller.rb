@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_user!, except: [:index, :show, :search]
+	before_action :authenticate_admin!, except: [:index, :show, :search]
 
 	def index
 		sort = params[:sort]
@@ -25,7 +26,7 @@ class ProductsController < ApplicationController
 	end
 
 	def new
-		
+		@product = Product.new
 	end
 
 	def show
@@ -41,16 +42,20 @@ class ProductsController < ApplicationController
 	def create
 		input_name = params[:name]
 		input_price = params[:price]
-		input_image = params[:image]
 		input_desc = params[:description]
 		input_stock_num = params[:stock_number]
 		input_supplier = params[:supplier_id]
 
-		@product = Product.create(name:input_name , price:input_price , image:input_image , description:input_desc, 
+		@product = Product.create(name:input_name , price:input_price, description:input_desc, 
 			stock_number:input_stock_num, supplier_id:input_supplier)
-		
-		flash[:success] = "Product Created!"
-		redirect_to "/products/#{@product.id}"
+
+		if @product.save
+			flash[:success] = "Product Created!"
+			redirect_to "/products/#{@product.id}"
+		else
+			flash[:danger] = "Product couldn't be created!"
+			render "new.html.erb"
+		end
 	end
 
 	def edit
@@ -69,9 +74,13 @@ class ProductsController < ApplicationController
 		@product = product.update(name:input_name , price:input_price, description:input_desc, 
 			stock_number:input_stock_num,supplier_id:input_supplier)
 		#@product.save
-
-		flash[:info] = "Product updated successfully!"
-		redirect_to "/products/#{product.id}"
+		if @product.save
+			flash[:info] = "Product updated successfully!"
+			redirect_to "/products/#{product.id}"
+		else
+			flash[:info] = "Product couldn't be updated!"
+			render "edit.html.erb"
+		end
 	end
 
 	def destroy

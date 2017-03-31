@@ -44,8 +44,10 @@
             <div>
              <%= x.description %><br>
               </div>
-            <%= link_to "Delete", "/products/#{x.id}", method: :delete %>
-            <%= link_to "Edit", "/products/#{x.id}/edit"%>
+            <% if current_user && current_user.admin %>
+              <%= link_to "Delete", "/products/#{x.id}", method: :delete %>
+              <%= link_to "Edit", "/products/#{x.id}/edit"%>
+            <% end %>
             </div>
           </div>
         </div>
